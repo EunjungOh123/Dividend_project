@@ -17,6 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,8 +52,13 @@ public class CompanyServiceImpl implements CompanyService{
 
     @Override
     public List<String> autocomplete(String keyword) {
-        return (List<String>) trie.prefixMap(keyword).keySet()
+        List<String> search = (List<String>) trie.prefixMap(keyword).keySet()
                 .stream().collect(Collectors.toList());
+        if(search.size() >= 10) {
+            List<String> subSearch = new ArrayList<>(search.subList(0, 10));
+            return subSearch;
+        }
+        return search;
     }
 
     @Override
