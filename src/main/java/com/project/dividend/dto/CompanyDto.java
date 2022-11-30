@@ -11,8 +11,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class CompanyDto {
+
     private Long id;
+
     private String ticker;
+
     private String name;
 
     public static CompanyDto fromEntity(CompanyEntity company) {
