@@ -30,7 +30,9 @@ public class ScraperScheduler {
     @CacheEvict(value = CacheKey.KEY_FINANCE, allEntries = true)
     @Scheduled(cron = "${scheduler.scrap.yahoo}")
     public void yahooFinanceScheduling() {
+
         log.info("scraper scheduler is started!");
+
         // 저장된 회사 목록 조회
         List<CompanyEntity> companies = companyRepository.findAll();
         // 회사마다 배당금 정보 새로 스크래핑
